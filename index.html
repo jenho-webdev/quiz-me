@@ -14,20 +14,20 @@
         <header>
             <h1>Quiz Me!</h1>
         </header>
-        <div class="Question-Container">
-            <div class="Question-header">
+        <div class="quiz-container">
+            <div class="quiz-header">
                 <h2>Question 1</h2>
-                <p>question content goes here</p>
+                <p id="question">question content goes here</p>
             </div>
-            <div class="MC-Container">
-                <textarea readonly id="codepan" placeholder="Your answer goes here!"
-                    aria-label="codes"></textarea>
+            <div id="choices">
+            
+                <button id="submitBtn">Submit</button>
             </div>
-            <div class="question-footer">
-                <button id="generate" class="btn">Generate Password</button>
+            <div class="quize-footer">
+                <p id="timer"></p>
+                <button id="next">Next</button>
             </div>
         </div>
-
     </div>
     <script src="./assets/js/script.js"></script>
 </body>
