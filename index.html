@@ -10,22 +10,27 @@
 </head>
 
 <body>
-    <div class="wrapper">
-        <header>
-            <h1>Quiz Me!</h1>
-        </header>
-        <div class="quiz-container">
-            <div class="quiz-header">
-                <h2>Question 1</h2>
-                <p id="question">question content goes here</p>
-            </div>
-            <div id="choices">
+<!-- quiz card container; flex column -->
+    <div class="quiz-container">
+        <header> JavaScript Quiz</header>
+        <!-- quiz card inner sections; containers; flex row  -->
+        
+        <div class="quiz-header-container">
+            <div><button class="view-scores">View Scores</button></a></div>
             
-                <button id="submitBtn">Submit</button>
-            </div>
-            <div class="quize-footer">
-                <p id="timer"></p>
-                <button id="next">Next</button>
+            <div>Time Left: <span id="timer">
+                <!-- where timer show and count down -->
+            </span></div>
+        </div>
+        
+        <div class="main-container">
+            <p class="display-question">
+                <!-- where questions goes -->
+            </p>
+            <div class="options-container">
+                <ol class="options-list">
+                <!-- where the button within li goes -->
+                </ol>
             </div>
         </div>
     </div>
