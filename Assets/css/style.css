@@ -127,7 +127,7 @@ label{
     border-bottom: #eeeeee solid 1px;
 }
 
-.modalHeader h2 {
+.modalHeader .h2 {
     font-size: 20px;
 }
 

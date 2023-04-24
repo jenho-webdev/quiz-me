@@ -79,6 +79,9 @@ var startButton = document.querySelector("#start-button");
 var timeEl = document.querySelector("#timer");
 var modalStart = document.querySelector(".modalStart");
 var modalDialog = document.querySelector(".modal-dialog");
+var modalHeader = document.querySelector(".modal-header");
+var modalBody = document.querySelector(".modal-body");
+var modalFooter = document.querySelector(".modal-footer");
 
 var gameQuestions = []; //empty array to hold 10 shuffled selected questions
 var timeLeft;
@@ -221,17 +224,50 @@ function checkAnswer(selectedAnswer) {
 
 
 function endGame(){
-
   var userName = "";
   var userEmail = "";
-  storeScore();
+  optionsList.innerHTML = "";
+  questionElement.innerHTML = "";
 
+  //create a modal header
+  modalHeader.innerText = "Game Over";
+
+  //create a modal body
+  modalBody.innerText = "Your final score is " + timeLeft;
+
+  //create a form
+
+  //create a text input
+
+  //create a label: first name
+
+  //create a text input
+
+  //create a label: last name
+
+  //create a modal footer
+
+  //create and add a submit button to modal footer
+
+  //add event listener to submit button
+  
+  //when submit button is clicked
+
+  //get the value of the text input
+
+  //show the modal
+  modalStart.style.display = "block";
+
+  //store it to local storage
+  storeScore(userResult);
 }
 
-function storeScore() {
-  // Stringify and set key in localStorage to scores array
-
-}
+function storeScore(userResult) {
+  // Get stored scores from localStorage, or if not any, set to empty array
+  var storedScores = JSON.parse(localStorage.getItem("scores")) || [];
+  // Push new score into scores array
+  storedScores.push(userResult);
+} 
 
 
 
