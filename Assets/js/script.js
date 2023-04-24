@@ -73,37 +73,65 @@ var qPool = [
   //add more questions here
 ];
 
-var questionElement = document.getElementById(".display-question");
-var optionsList = document.getElementById("options-list");
-var timerElement = document.querySelector(".timer-count");
-var startButton = document.querySelector(".start-button");
-var timeEl = document.querySelector(".time");
+var questionElement = document.querySelector(".display-question");
+var optionsList = document.querySelector(".options-list");
+var startButton = document.querySelector("#start-button");
+var timeEl = document.querySelector("#timer");
+var modalStart = document.querySelector(".modalStart");
+var modalDialog = document.querySelector(".modal-dialog");
 
-var shuffledQuestions = []; //empty array to hold 10 shuffled selected questions
-var timeLeft = 60;
+var gameQuestions = []; //empty array to hold 10 shuffled selected questions
+var timeLeft;
 var timer;
 var currentQuestionIndex = 0;
 // var finalScore;
 
+startButton.addEventListener("click", function () {
+    modalStart.style.display = "none";
+    startGame();
+});
+    
+function startGame() {
+  //create an array of 10 questions randomly from the pool of questions
+
+  shuffleQuestions();
+  //set timer to 60 seconds
+  timeLeft = 60;
+  countdown();
+  //render the first question in the gameQuestions array to the dom
+  renderQuestion();
+ 
+}
+
+function shuffleQuestions() 
+{
+  //pick 10 random questions from the pool of questions.
+  while (gameQuestions.length <= 9) {
+    var randomQuestion = qPool[Math.floor(Math.random() * qPool.length)];
+    if (!gameQuestions.includes(randomQuestion)) {
+      gameQuestions.push(randomQuestion);
+    }
+  }
+}
 
 function countdown() {
   // Use the `setInterval()` method to call a function to be executed every 1000 milliseconds
-  timeInterval = setInterval(function () {
+  timer = setInterval(function () {
     // As long as the `timeLeft` is greater than 1
     if (timeLeft > 1) {
-      // Set the `textContent` of `timerEl` to show the remaining seconds
-      timerEl.textContent = timeLeft + ' seconds remaining';
+      // Set the `textContent` of `timeEl` to show the remaining seconds
+      timeEl.textContent = timeLeft + " seconds remaining";
       // Decrement `timeLeft` by 1
       timeLeft--;
     } else if (timeLeft === 1) {
       // When `timeLeft` is equal to 1, rename to 'second' instead of 'seconds'
-      timerEl.textContent = timeLeft + ' second remaining';
+      timeEl.textContent = timeLeft + " second remaining";
       timeLeft--;
     } else {
-      // Once `timeLeft` gets to 0, set `timerEl` to an empty string
-      timerEl.textContent = '';
+      // Once `timeLeft` gets to 0, set `timeEl` to an empty string
+      timeEl.textContent = "";
       // Use `clearInterval()` to stop the timer
-      clearInterval(timeInterval);
+      clearInterval(timer);
       // Call the `endGame()` function
       endGame();
     }
@@ -113,29 +141,19 @@ function countdown() {
 
 
 
-function shuffleQuestions(){
-
-  //pick 10 random questions from the pool of questions.
-  for(var i = 0; i < 10; i_++)
-  {
-    var randomQuestion = qPool[Math.floor(Math.random()*qPool.length)];
-    if(!shuffleQuestions.includes(randomQuestion))
-    {
-      shuffledQuestions.push(randomQuestion);
-    }
-  }
-
-}
-
-//function to handle displaying question in the shuffledQuestions array to the dom
+//function to handle displaying question in the gameQuestions array to the dom
 function renderQuestion() {
   
-  
-  var currentQuestion = shuffledQuestions[currentQuestionIndex];
-  questionElement.textContent = currentQuestion.question;
-  choicesElement.innerHTML = "";
-  var optionsList = currentQuestion.choices;
- 
+  var currentQuestion = gameQuestions[currentQuestionIndex];
+  var p = document.createElement("p");;
+  p.textContent = currentQuestion.question;
+  //clear the question from the previous 
+  questionElement.innerHTML = ""; 
+  questionElement.appendChild(p);
+
+  //clear the options list from the previous question
+  optionsList.innerHTML = "";
+    
   //create and appand each options for the question as a button
   currentQuestion.choices.forEach((choice, index) => {
   
@@ -147,19 +165,29 @@ function renderQuestion() {
     button.textContent = choice;
     
     li.appendChild(button);
-    button.addEventListener("click", () => checkAnswer(index));
     optionsList.appendChild(li);
 
   });
 };
 
+//function to handle user's answer selection
+optionsList.addEventListener("click", function (event) {
+  var element = event.target;
+  // Checks if element is a option selecting button
+  if (element.matches("button") === true) {
+    // Get its data-index value and check  if it is the answer from current question
+    var userAnswer = element.parentElement.getAttribute("data-index");
+    checkAnswer(userAnswer);
+  }
+});
+
 function checkAnswer(selectedAnswer) {
   //get current question in array
-  var currentQuestion = shuffledQuestions[currentQuestionIndex];
+  var currentQuestion = gameQuestions[currentQuestionIndex];
   if (selectedAnswer === currentQuestion.correctAnswer)
   {
     // User's finish time is recorded when the final question is answered correctly
-    if(currentQuestionIndex === shuffleQuestions.length - 1)
+    if(currentQuestionIndex === gameQuestions.length - 1)
     {
         clearInterval(timer);
         endGame();
@@ -191,28 +219,6 @@ function checkAnswer(selectedAnswer) {
 }
   
 
-// Add click event to options button element
-
-optionsList.addEventListener("click", function (event) {
-  var element = event.target;
-
-  // Checks if element is a button
-  if (element.matches("button") === true) {
-    // Get its data-index value and check  if it is the answer from current question
-    var userAnswer = element.parentElement.getAttribute("data-index");
-    checkAnswer(userAnswer);
-    
-  }
-
-})
-
-function StartGame() {
-  //create an array of 10 questions randomly from the pool of questions
-  // shuffleQuestions();
-  renderQuestion();
-  countdown();
-  
-}
 
 function endGame(){
 
@@ -226,3 +232,9 @@ function storeScore() {
   // Stringify and set key in localStorage to scores array
 
 }
+
+
+
+
+
+

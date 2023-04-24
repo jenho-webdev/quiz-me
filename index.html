@@ -10,27 +10,44 @@
 </head>
 
 <body>
-<!-- quiz card container; flex column -->
+
+    <!-- The Modal -->
+    <div class="modalStart">
+          
+        <div class="modalDialog">
+            <div class="modalHeader">
+                <h2>Welcome to the Quiz!</h2>
+            </div>
+            <div class="modalBody">
+                <p> Click the start button to begin.</p>
+            </div>
+            <div class="modalFooter">
+                <button id="start-button" class="btn">Start!</button>
+            </div>           
+        </div>
+    </div>
+
+    <!-- quiz card container; flex column -->
     <div class="quiz-container">
         <header> JavaScript Quiz</header>
         <!-- quiz card inner sections; containers; flex row  -->
         
         <div class="quiz-header-container">
-            <div><button class="view-scores">View Scores</button></a></div>
+            <div><a class="btn">View Scores</a></div>
             
-            <div>Time Left: <span id="timer">
+            <div><label>Time Left:</label><span id="timer">
                 <!-- where timer show and count down -->
             </span></div>
         </div>
         
         <div class="main-container">
-            <p class="display-question">
+            <div class="display-question">
                 <!-- where questions goes -->
-            </p>
+            </div>
             <div class="options-container">
-                <ol class="options-list">
+                <ul id= "options-list" class="options-list">
                 <!-- where the button within li goes -->
-                </ol>
+                </ul>
             </div>
         </div>
     </div>
