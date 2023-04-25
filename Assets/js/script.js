@@ -78,10 +78,10 @@ var optionsList = document.querySelector(".options-list");
 var startButton = document.querySelector("#start-button");
 var timeEl = document.querySelector("#timer");
 var modalStart = document.querySelector(".modalStart");
-var modalDialog = document.querySelector(".modal-dialog");
-var modalHeader = document.querySelector(".modal-header");
-var modalBody = document.querySelector(".modal-body");
-var modalFooter = document.querySelector(".modal-footer");
+var modalDialog = document.querySelector(".modalDialog");
+var modalHeader = document.querySelector(".modalHeader");
+var modalBody = document.querySelector(".modalBody");
+var modalFooter = document.querySelector(".modalFooter");
 
 var gameQuestions = []; //empty array to hold 10 shuffled selected questions
 var timeLeft;
@@ -91,12 +91,15 @@ var currentQuestionIndex = 0;
 
 startButton.addEventListener("click", function () {
     modalStart.style.display = "none";
+    modalBody.innerText = " ";
+    modalFooter.innerText = " ";
+    modalHeader.innerText = " ";
+    
     startGame();
 });
     
 function startGame() {
   //create an array of 10 questions randomly from the pool of questions
-
   shuffleQuestions();
   //set timer to 60 seconds
   timeLeft = 60;
@@ -187,70 +190,169 @@ optionsList.addEventListener("click", function (event) {
 function checkAnswer(selectedAnswer) {
   //get current question in array
   var currentQuestion = gameQuestions[currentQuestionIndex];
+
+  
+  //if the user selected the correct answer
   if (selectedAnswer === currentQuestion.correctAnswer)
   {
-    // User's finish time is recorded when the final question is answered correctly
-    if(currentQuestionIndex === gameQuestions.length - 1)
+    //then it is at the last question
+    if(currentQuestionIndex == 9)
     {
-        clearInterval(timer);
-        endGame();
-    }
-    else
-    {
-        currentQuestionIndex++;
-        renderQuestion();
-    }
-    
-  }
-  //if wrong answer 
-  else
-  {
-    //deduct 5 sec from the remaining time
-    timeLeft -= 5;
-    //if no time left, then clear timer and game over.
-    if(timeLeft <=0)
-    {
-      clearInterval(timer);
+      //end the game
+
       endGame();
     }
-    //else advance to next question
+    //else if it is not last question, edvance to next question
     else{
       currentQuestionIndex++;
       renderQuestion();
     }
+    
+  }
+  //if the user selected the wrong answer
+  else if( selectedAnswer !== currentQuestion.correctAnswer)
+  {
+    //if it is at the last question
+    if(currentQuestionIndex == 9)
+    {
+      //timer take 5 sec off and game over
+      //endGame will zero out all negative timeLeft amount as the final result
+      timeLeft = timeLeft - 5;
+      endGame();
+    }
+    else{
+      //else if it is not last question, timer - 5 and advance to next question
+      timeLeft = timeLeft - 5;
+      currentQuestionIndex++;
+      renderQuestion();
+    } 
+  } //just in case there are any other cases
+  else{
+    endGame()
   }
 }
-  
 
-
+// GAME OVER 
 function endGame(){
   var userName = "";
   var userEmail = "";
+  var finalScore = timeLeft;
   optionsList.innerHTML = "";
   questionElement.innerHTML = "";
+
+  //set the score to 0 if it is negative
+  if (finalScore < 0) {
+    finalScore = 0;
+  }
+
+  //stop the countdown
+  clearInterval(timer);
+
+  //show the modal
+  modalStart.style.display = "block";
 
   //create a modal header
   modalHeader.innerText = "Game Over";
 
   //create a modal body
+
   modalBody.innerText = "Your final score is " + timeLeft;
 
+  
+ 
   //create a form
-
-  //create a text input
+  var form = document.createElement("form");
+  form.setAttribute("class", "endGameForm");
 
   //create a label: first name
+  var fNameLabel = document.createElement("label");
+  fNameLabel.setAttribute("for", "fName");
+  fNameLabel.innerText = "First Name: ";
+  form.appendChild(fNameLabel);
 
   //create a text input
+  var inputUserFirstName = document.createElement("input");
+  inputUserFirstName.setAttribute("type", "text");
+  inputUserFirstName.setAttribute("id", "fName");
+  inputUserFirstName.setAttribute("name", "fName");
+  form.appendChild(inputUserFirstName);
 
   //create a label: last name
+  var lNameLabel = document.createElement("label");
+  lNameLabel.setAttribute("for", "lName");
+  lNameLabel.innerText = "Last Name: ";
+  form.appendChild(lNameLabel);
 
+  //create a text input
+  var inputUserLastName = document.createElement("input");
+  inputUserLastName.setAttribute("type", "text");
+  inputUserLastName.setAttribute("id", "lName");
+  inputUserLastName.setAttribute("name", "lName");
+  form.appendChild(inputUserLastName);
+
+  //create a label: email
+  var emailLabel = document.createElement("label");
+  emailLabel.setAttribute("for", "email");
+  emailLabel.innerText = "Email: ";
+  form.appendChild(emailLabel);
+
+  //create a text input for email
+  var inputUserEmail = document.createElement("input");
+  inputUserEmail.setAttribute("type", "text");
+  inputUserEmail.setAttribute("id", "email");
+  inputUserEmail.setAttribute("name", "email");
+  form.appendChild(inputUserEmail);
+
+  modalBody.appendChild(form);
+
+  //create a modal footer
+  modalFooter.innerHTML = "";
+  modalFooter.appendChild(submitButton);
+
+  //create a submit button
+  var submitButton = document.createElement("button");
+  submitButton.setAttribute("type", "submit");
+  submitButton.setAttribute("id", "submitButton");
+  submitButton.setAttribute("class", "btn");
+  submitButton.innerText = "Submit";
+  form.appendChild(submitButton);
+
+  //create a view scores button
+  var viewScoresBtn = document.createElement("button");
+  viewScoresBtn.setAttribute("type", "viewScores");
+  viewScoresBtn.setAttribute("id", "viewScoresBtn");
+  viewScoresBtn.setAttribute("class", "btn");
+  viewScoresBtn.innerText = "View Scores";
+  modalFooter.appendChild(viewScoresBtn);
+
+    //add event listener to view scores button
+
+    //when view scores button is clicked
+
+    //add event listener to submit button
+    submitButton.addEventListener("click", function (event) {
+      event.preventDefault();
+      //get the value of the text input
+      userName = inputUserFirstName.value + " " + inputUserLastName.value;
+      userEmail = inputUserEmail.value;
+
+      //store it to local storage
+      storeScore(userName, userEmail, timeLeft);
+
+      //clear the modal and output score saved after submit
+      modalHeader.innerText = "Score Saved";
+      modalBody.innerHTML = "";
+      modalFooter.innerHTML = "";
+
+      //create new button for view scores and start a new game
+    });
+  });
   //create a modal footer
 
   //create and add a submit button to modal footer
 
   //add event listener to submit button
-  
+
   //when submit button is clicked
 
   //get the value of the text input
