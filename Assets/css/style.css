@@ -72,12 +72,17 @@ label{
     margin-block: 20px;
     padding: 20px;
 }
-
-.modalStart:target:before {
+#modal-End
+{
     display: none;
 }
+
+.modal:target:before {
+    display: none;
+}
+
 /* The Modal (background) */
-.modalStart:before {
+.modal:before {
     content: "";
     display: block;
     background: rgba(0, 0, 0, 0.6);
@@ -88,7 +93,7 @@ label{
     bottom: 0;
     z-index: 10;
 }
-.modalStart .modalDialog {
+.modal .modalDialog {
     background: #ffffff;
     border: #333333 solid 1px;
     border-radius: 5px;
@@ -107,7 +112,7 @@ label{
     top: 20%;
 }
 
-.modalStart:target .modalDialog {
+.modal:target .modalDialog {
     top: -100%;
     -webkit-transform: translate(0, -500%);
     -ms-transform: translate(0, -500%);

@@ -9,11 +9,10 @@
     <link rel="stylesheet" href="./assets/css/style.css" />
 </head>
 
-<body>
+<body >
 
     <!-- The Modal -->
-    <div class="modalStart">
-          
+    <div class="modal" id="modalStart">
         <div class="modalDialog">
             <div class="modalHeader">
                 <span class="h2">Welcome to the Quiz!</span>
@@ -27,6 +26,24 @@
         </div>
     </div>
 
+    <!-- Game Over Modal -->
+    <div id="modal-End" class="modal" >
+       <div class="modalDialog">
+            <div class="modalHeader" id="modalEnd-Header">
+                <span class="h2">Game Over!</span>
+            </div>
+            <div class="modalBody" id="modalEnd-body">
+                <p id="finalScoreMsg"></p>
+                <label>Initials: </label>
+                <input id="initials" type="text" name="initials">
+            
+            </div>
+            <div class="modalFooter" id="modalEnd-footer">
+                <button id="saveScore" class="btn">Save Score!</button>
+            </div>
+        </div>
+    </div>
+    
     <!-- quiz card container; flex column -->
     <div class="quiz-container">
         <header> JavaScript Quiz</header>
