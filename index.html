@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="./assets/css/style.css" />
 </head>
 
-<body >
+<body>
 
     <!-- The Modal -->
     <div class="modal" id="modalStart">
@@ -22,13 +22,13 @@
             </div>
             <div class="modalFooter">
                 <button id="start-button" class="btn">Start!</button>
-            </div>           
+            </div>
         </div>
     </div>
 
     <!-- Game Over Modal -->
-    <div id="modal-End" class="modal" >
-       <div class="modalDialog">
+    <div id="modal-End" class="modal">
+        <div class="modalDialog">
             <div class="modalHeader" id="modalEnd-Header">
                 <span class="h2">Game Over!</span>
             </div>
@@ -36,34 +36,33 @@
                 <p id="finalScoreMsg"></p>
                 <label>Initials: </label>
                 <input id="initials" type="text" name="initials">
-            
+
             </div>
             <div class="modalFooter" id="modalEnd-footer">
                 <button id="saveScore" class="btn">Save Score!</button>
             </div>
         </div>
     </div>
-    
+
     <!-- quiz card container; flex column -->
     <div class="quiz-container">
         <header> JavaScript Quiz</header>
         <!-- quiz card inner sections; containers; flex row  -->
-        
+
         <div class="quiz-header-container">
-            <div><a class="btn">View Scores</a></div>
-            
-            <div><label>Time Left:</label><span id="timer">
-                <!-- where timer show and count down -->
-            </span></div>
+            <div>
+            <label>Time Left:</label>
+            <span id="timer"><!-- where timer show and count down --> </span>
+            </div>
         </div>
-        
+
         <div class="main-container">
             <div class="display-question">
                 <!-- where questions goes -->
             </div>
             <div class="options-container">
-                <ul id= "options-list" class="options-list">
-                <!-- where the button within li goes -->
+                <ul id="options-list" class="options-list">
+                    <!-- where the button within li goes -->
                 </ul>
             </div>
         </div>
