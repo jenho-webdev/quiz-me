@@ -91,6 +91,7 @@ var qPool = [
 var questionElement = document.querySelector(".display-question");
 var optionsList = document.querySelector(".options-list");
 var startButton = document.querySelector("#start-button");
+var viewBtn = document.querySelector("#viewScore");
 var timeEl = document.querySelector("#timer");
 var modalStart = document.querySelector("#modalStart");
 var modalDialog = document.querySelector(".modalDialog");
@@ -106,16 +107,22 @@ var gameQuestions = []; //empty array to hold 10 shuffled selected questions
 var timeLeft;
 var timer;
 var currentQuestionIndex = 0;
-var savedScores = [];
-
-
+var scores = [];
 
 startButton.addEventListener("click", function () {
   modalStart.style.display = "none";
   startGame();
 });
+viewBtn.addEventListener("click", function () {
+  modalStart.style.display = "none";
+  modalEnd.style.display = "none";
 
+});
 function startGame() {
+  var storedScores = JSON.parse(localStorage.getItem("scores"));
+  if (storedScores !== null) {
+    scores = storedScores;
+  }
   //create an array of 10 questions randomly from the pool of questions
   shuffleQuestions();
   //set timer to 60 seconds
@@ -123,6 +130,8 @@ function startGame() {
   countdown();
   //render the first question in the gameQuestions array to the dom
   renderQuestion();
+  
+
 }
 
 function shuffleQuestions() {
@@ -236,8 +245,7 @@ function checkAnswer(selectedAnswer) {
 
 // GAME OVER
 function endGame() {
-  var userName = "";
-  var userEmail = "";
+  var initials = "";
   var finalScore = timeLeft;
   optionsList.innerHTML = "";
   questionElement.innerHTML = "";
@@ -266,44 +274,47 @@ function endGame() {
       alert("Please enter your initials");
       return;
     } 
-    var save = 
-    {
-      initials: initialInput.value.trim(),
-      score: finalScore,
-    };
-
-      // Add new save to savedScores array, clear the input
-      savedScores.push(save);
-      initialInput.value = "";
-      localStorage.setItem("savedScores", JSON.stringify(savedScores));
+      initials = initialInput.value.trim();
+      saveHighScore(finalScore, initials);
       alert("Success!!! Your score has been saved!");
       window.location.reload();
       
   });
 
-  // renderSavedScore();
+  
+  
+}
+function saveHighScore(score, initials)
+{
+
+  var lastSave =
+  {
+    initials :  initials,
+    score : score
+  };
+
+  scores.push(lastSave);
+  initialInput = "";
+  
+  localStorage.setItem("scores",JSON.stringify(scores));
+
 }
 
 // function renderSavedScore() {
-// modalEnd.style.display = "none";
-// modalStart.style.display = "none";
-// questionElement.innerHTML = "";
+// //Get scores saved in local storage SavedScores
+// savedScores = JSON.parse(localStorage.getItem("savedScores"));
 
-//   // Render a new li for each todo
+
+
 //   for (var i = 0; i < savedScores.length; i++) {
 //     var save = savedScores[i];
 
 //     var li = document.createElement("li");
-//     li.textContent = "In
+//     li.textContent = "Initial: " + save.initials + " Score: " + save.score;
 //     li.setAttribute("data-index", i);
 
-//     var button = document.createElement("button");
-//     button.textContent = "Complete ✔️";
+//     questionElement.appendChild(li);
+// }
+// }
 
-//     li.appendChild(button);
-//     todoList.appendChild(li);
-//   }
 
-// var highScores = JSON.parse(localStorage.getItem("saves"));
-
-// if(lo)
