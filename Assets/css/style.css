@@ -19,17 +19,13 @@ h1
 label{
     font-size: 80%;
 }
-#time-label, #startGamebtn2 {
-
-    display: none;
-}
 
 .btn {
-    
     background: #428bca;
     border: #357ebd solid 1px;
     border-radius: 3px;
     color: #fff;
+    display: inline-block;
     font-size: 14px;
     padding: 8px 15px;
     text-decoration: none;
@@ -39,7 +35,7 @@ label{
     transition: color .1s ease;
 }
 
-.btn:hover {
+R.btn:hover {
     background: #357ebd;
 }
 
@@ -146,14 +142,21 @@ label{
 }
 
 .quiz-header-container
-{   
-    
-    display: block;
+{   display: flex;
     flex-direction:row;
-    justify-content: space-around;
+    justify-content: space-between;
     font-size: 1em;
     font-weight: bold;
     padding: 20px;
+}
+
+.timer {
+    /* height: 240px;
+    padding: 10px;
+    background: #13293d; */
+    color: #010101;
+    text-align: center;
+    margin-left: auto;
 }
 
 .main-container {
@@ -192,6 +195,7 @@ label{
     flex-direction: column;
 
 }
+
 
 .modalAlertMs {
 
