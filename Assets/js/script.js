@@ -88,36 +88,58 @@ var qPool = [
   //add more questions here
 ];
 
+//main page elements
+var startButton2 = document.querySelector("#startGamebtn2");
 var questionElement = document.querySelector(".display-question");
 var optionsList = document.querySelector(".options-list");
+var timeEl = document.querySelector(".timer");
+var showTime = document.querySelector("#time-label");
+
+//button in modal
 var startButton = document.querySelector("#start-button");
 var viewBtn = document.querySelector("#viewScore");
-var timeEl = document.querySelector("#timer");
+
+//modal elements
 var modalStart = document.querySelector("#modalStart");
 var modalDialog = document.querySelector(".modalDialog");
 var modalHeader = document.querySelector(".modalHeader");
 var modalBody = document.querySelector(".modalBody");
 var modalFooter = document.querySelector(".modalFooter");
+//modal elements for end game
 var modalEnd = document.querySelector("#modal-End");
 var finalScoreMsg = document.querySelector("#finalScoreMsg");
 var modalAlertMsg = document.querySelector(".modalAlertMsg");
 var saveBtn = document.querySelector("#saveScore");
 var initialInput = document.querySelector("#initials");
+//Game var 
 var gameQuestions = []; //empty array to hold 10 shuffled selected questions
 var timeLeft;
 var timer;
 var currentQuestionIndex = 0;
 var scores = [];
 
-startButton.addEventListener("click", function () {
-  modalStart.style.display = "none";
-  startGame();
-});
-viewBtn.addEventListener("click", function () {
-  modalStart.style.display = "none";
-  modalEnd.style.display = "none";
 
+window.addEventListener("click", function (event) {
+  var element = event.target;
+  //event listener for the start button in view page
+  if(element.matches("#startGamebtn2")) {
+    startGame();
+  }//modal's Start Button
+  else if(element.matches("#start-button")) {
+    modalStart.style.display = "none";
+    showTime.style.display = "block";
+    startGame();
+  }//event listener for the view score button
+  else if(element.matches("#viewScore")) {
+    modalStart.style.display = "none";
+    modalEnd.style.display = "none";
+    showTime.style.display = "none";
+    startButton2.style.display = "block";
+    renderScores();
+  }
+  
 });
+
 function startGame() {
   var storedScores = JSON.parse(localStorage.getItem("scores"));
   if (storedScores !== null) {
@@ -130,8 +152,6 @@ function startGame() {
   countdown();
   //render the first question in the gameQuestions array to the dom
   renderQuestion();
-  
-
 }
 
 function shuffleQuestions() {
@@ -268,53 +288,46 @@ function endGame() {
   saveBtn.addEventListener("click", function (event) {
     event.preventDefault();
     //get the value of the text input to the inital field
-   
-    while(initialInput.value === "") 
-    {
+
+    while (initialInput.value === "") {
       alert("Please enter your initials");
       return;
-    } 
-      initials = initialInput.value.trim();
-      saveHighScore(finalScore, initials);
-      alert("Success!!! Your score has been saved!");
-      window.location.reload();
-      
+    }
+    initials = initialInput.value.trim();
+    saveHighScore(finalScore, initials);
+    alert("Success!!! Your score has been saved!");
+    window.location.reload();
   });
-
-  
-  
 }
-function saveHighScore(score, initials)
-{
-
-  var lastSave =
-  {
-    initials :  initials,
-    score : score
+function saveHighScore(score, initials) {
+  var lastSave = {
+    initials: initials,
+    score: score,
   };
 
   scores.push(lastSave);
   initialInput = "";
-  
-  localStorage.setItem("scores",JSON.stringify(scores));
 
+  localStorage.setItem("scores", JSON.stringify(scores));
 }
 
-// function renderSavedScore() {
-// //Get scores saved in local storage SavedScores
-// savedScores = JSON.parse(localStorage.getItem("savedScores"));
+function renderScores() {
+  //Get scores saved in local storage SavedScores
 
+  scores = JSON.parse(localStorage.getItem("scores"));
 
+  //for each saved score, create a list item and append it to the question element
 
-//   for (var i = 0; i < savedScores.length; i++) {
-//     var save = savedScores[i];
+  if (scores === null) {
+    scores = [];
+  }
 
-//     var li = document.createElement("li");
-//     li.textContent = "Initial: " + save.initials + " Score: " + save.score;
-//     li.setAttribute("data-index", i);
-
-//     questionElement.appendChild(li);
-// }
-// }
-
-
+  for (var i = 0; i < scores.length; i++) {
+    var save = scores[i];
+    var p = document.createElement("p");
+    p.textContent = "Initial: " + save.initials + "  | " + " Score: " + save.score;
+    questionElement.appendChild(p);
+  }
+  
+  
+}
