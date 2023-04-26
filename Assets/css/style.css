@@ -5,7 +5,7 @@
 header {
     padding: 40px;
     text-align: center;
-    font-size: 5em;
+    font-size: 4em;
     background: #13293d;
     color: #b5a75e;
     border-bottom: 30px #879274;
@@ -13,13 +13,57 @@ header {
 
 h1
 {
+    font-size: 100%;
+}
+
+label{
+    font-size: 80%;
+}
+
+.btn {
+    background: #428bca;
+    border: #357ebd solid 1px;
+    border-radius: 3px;
+    color: #fff;
+    display: inline-block;
+    font-size: 14px;
+    padding: 8px 15px;
+    text-decoration: none;
+    text-align: center;
+    min-width: 60px;
+    position: relative;
+    transition: color .1s ease;
+}
+
+.btn:hover {
+    background: #357ebd;
+}
+
+.btn.btn-big {
+    font-size: 18px;
+    padding: 15px 20px;
+    min-width: 100px;
+}
+
+.btn-close {
+    color: #aaaaaa;
     font-size: 30px;
+    text-decoration: none;
+    position: absolute;
+    right: 5px;
+    top: 0;
+}
+
+.btn-close:hover {
+    color: #919191;
 }
 
 .quiz-container {
     display: flex;
+    width: 70%;
+    
     flex-direction: column;
-    margin: 20px;
+    margin: auto;
     background: radial-gradient(circle, rgba(240, 230, 140, 1) 0%, rgba(187, 124, 33, 0.604079131652661) 100%);
     border: 1px solid #eceff1;
     border-radius: 8px;
@@ -28,17 +72,83 @@ h1
     margin-block: 20px;
     padding: 20px;
 }
+#modal-End
+{
+    display: none;
+}
 
+.modal:target:before {
+    display: none;
+}
+
+/* The Modal (background) */
+.modal:before {
+    content: "";
+    display: block;
+    background: rgba(0, 0, 0, 0.6);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+}
+.modal .modalDialog {
+    background: #ffffff;
+    border: #333333 solid 1px;
+    border-radius: 5px;
+    margin-left: -200px;
+    position: fixed;
+    left: 50%;
+    z-index: 11;
+    width: 360px;
+    -webkit-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
+    transform: translate(0, 0);
+    -webkit-transition: -webkit-transform 0.3s ease-out;
+    -moz-transition: -moz-transform 0.3s ease-out;
+    -o-transition: -o-transform 0.3s ease-out;
+    transition: transform 0.3s ease-out;
+    top: 20%;
+}
+
+.modal:target .modalDialog {
+    top: -100%;
+    -webkit-transform: translate(0, -500%);
+    -ms-transform: translate(0, -500%);
+    transform: translate(0, -500%);
+}
+
+.modalBody {
+    padding: 20px;
+}
+
+.modalHeader,
+.modalFooter {
+    padding: 10px 20px;
+}
+
+.modalHeader {
+    border-bottom: #eeeeee solid 1px;
+}
+
+.modalHeader .h2 {
+    font-size: 20px;
+}
+
+.modalFooter {
+    border-top: #eeeeee solid 1px;
+    text-align: right;
+}
 
 .quiz-header-container
 {   display: flex;
     flex-direction:row;
     justify-content: space-between;
-    font-size: 2em;
+    font-size: 1em;
     font-weight: bold;
     padding: 20px;
 }
-
 
 .timer {
     /* height: 240px;
@@ -63,6 +173,7 @@ h1
     color: black;
     text-align: left;
 } 
+
 .options-list li
 {
     list-style-type:upper-roman;
@@ -79,14 +190,18 @@ h1
     padding: 10px;
     align-items: center;
 }
-
-.view-scores {
-    border: 1px solid #eceff1;
-    border-radius: 5px;
-    font-size: 18px;
-    font-weight: bold;
+.endGameForm {
+    display: flex;
+    flex-direction: column;
 
 }
-@media screen and (max-width: 1183px) {
 
+
+.modalAlertMs {
+
+    color: red;
 }
+
+/* @media screen and (max-width: 1183px) {
+
+} */
