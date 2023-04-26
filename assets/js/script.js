@@ -145,6 +145,13 @@ function startGame() {
   if (storedScores !== null) {
     scores = storedScores;
   }
+  //show timer on screen
+  timeEl.style.display = "flex";
+  showTime.style.display = "flex";
+
+  //hide the start button on screen
+  startButton2.style.display = "none";
+
   //create an array of 10 questions randomly from the pool of questions
   shuffleQuestions();
   //set timer to 60 seconds
