@@ -40,9 +40,12 @@ The following animation demonstrates the application functionality:
 
 ## Roadmap
 
+- Allow user to select the total number of questions that they will be quiz on in an incremental of 10.
+- Instead of using time remaining and -5sec for wrong answer as a scoring system. Develop a more robust scoring system that will scale with different number of questions set.
 - Support interactive coding questions
 - Include HTML and CSS questions
-- upport emailing result to user.
+- support emailing result to user.
+
 
 ## Contact Me
 
