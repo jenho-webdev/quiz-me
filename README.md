@@ -29,10 +29,10 @@ To help familiarize you with these tests and questions, the app allows you to ta
     THEN if it is empty, alert the me until something is inputted to the initials text field. 
     WHEN there is text/char in the initial text field and I hit the save button
     THEN the game save the user's inital and score into local storage. 
-    THEN system provide an alert that save was successful and update screen with option to start a new game or view score.
-    WHEN i click on view score button
-    THEN it show all user inital and scores saved locally.
-    WHEN i click on the Start a New Game button on the view score page
+    THEN system provide an alert to confirm the save was successful and give gamer option to start new game or view scores saved.
+    WHEN i click on "view score" button
+    THEN it show a sorted list of saved user scores and button to start a new game.
+    WHEN i click on the "Start a New Game" button on the view scores page
     THEN it start a new game
 
 ## Wireframe
