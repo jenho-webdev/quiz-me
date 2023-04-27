@@ -110,7 +110,7 @@ var modalEnd = document.querySelector("#modal-End");
 var finalScoreMsg = document.querySelector("#finalScoreMsg");
 var modalAlertMsg = document.querySelector(".modalAlertMsg");
 var saveBtn = document.querySelector("#saveScore");
-var initialInput = document.querySelector("#initials");
+var initialsInput = document.querySelector("#initials");
 //Game var
 var gameQuestions = []; //empty array to hold 10 shuffled selected questions
 var timeLeft;
@@ -213,7 +213,7 @@ function renderQuestion() {
     //list item contain a button that display the question's option number [i]
     var button = document.createElement("button");
     button.textContent = choice;
-
+    button.setAttribute("class", "btn");
     li.appendChild(button);
     optionsList.appendChild(li);
   });
@@ -294,11 +294,11 @@ function endGame() {
     event.preventDefault();
     //get the value of the text input to the inital field
 
-    while (initialInput.value === "") {
+    while (initialsInput.value === "") {
       alert("Please enter your initials");
       return;
     }
-    initials = initialInput.value.trim();
+    initials = initialsInput.value.trim();
     saveHighScore(finalScore, initials);
     alert("Success!!! Your score has been saved!");
     window.location.reload();
@@ -311,7 +311,7 @@ function saveHighScore(score, initials) {
   };
 
   scores.push(lastSave);
-  initialInput = "";
+  initialsInput = "";
 
   localStorage.setItem("scores", JSON.stringify(scores));
 }
@@ -330,7 +330,7 @@ function renderScores() {
     var save = scores[i];
     var p = document.createElement("p");
     p.textContent =
-      "Initial: " + save.initials + "  | " + " Score: " + save.score;
+      "Initials: " + save.initials + "  | " + " Score: " + save.score;
     questionEl.appendChild(p);
   }
 }
