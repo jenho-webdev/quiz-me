@@ -1,5 +1,32 @@
 # 04 Web APIs: Code Quiz
 
+
+- [Explore the docs]( https://github.com/jenho-webdev/quiz-me)
+
+- [Deployed Application](https://jenho-webdev.github.io/quiz-me/)
+
+- [Report Bug](https://github.com/jenho-webdev/quiz-me/issues/)
+
+- [Request Feature](https://github.com/jenho-webdev/quiz-me/issues)
+
+<!-- TABLE OF CONTENTS -->
+
+## Table of Contents
+
+- [About The Project](#about-the-project)
+
+- [User Story](#user-story)
+
+- [Acceptance Criteria](#acceptance-criteria)
+
+- [Mock-up](#mock-up)
+
+- [Roadmap](#roadmap)
+
+- [Contact](#contact-me)
+
+- [Acknowledgments](#acknowledgments)
+
 ## About the App
 
 As you progress on your journey to becoming a full-stack web developer, you will likely encounter coding assessments, which may be part of an interview process. These assessments typically include both multiple-choice questions and interactive coding challenges.
