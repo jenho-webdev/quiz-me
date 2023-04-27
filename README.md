@@ -10,23 +10,30 @@ To help familiarize you with these tests and questions, the app allows you to ta
 
 
     AS A coding boot camp student
-    I WANT to take a timed quiz on JavaScript fundamentals that stores high scores
-    SO THAT I can gauge my progress compared to my peers
-
-
+    I WANT to take a timed quiz on JavaScript fundamentals that stores high scores locally and that i can review all stored scores and gamers' initials.
+   
 ## Acceptance Criteria
 
-    GIVEN I am taking a code quiz
-    WHEN I click the start button
+    GIVEN i am taking a code quiz
+    WHEN i click the start button
     THEN a timer starts and I am presented with a question
-    WHEN I answer a question
-    THEN I am presented with another question
-    WHEN I answer a question incorrectly
-    THEN time is subtracted from the clock
-    WHEN all questions are answered or the timer reaches 0
+    WHEN i answer a question
+    THEN i am presented with another question
+    WHEN i answer a question incorrectly
+    THEN time is subtracted 5 sec from the clock
+    WHEN all 10 questions are answered or the timer reaches 0
     THEN the game is over
     WHEN the game is over
-    THEN I can save my initials and my scorce
+    THEN i can save my initials and my scorce
+    WHEN the game save my initials, it verify the input isn't empty.
+    THEN if it is empty, alert the me until something is inputted to the initials text field. 
+    WHEN there is text/char in the initial text field and I hit the save button
+    THEN the game save the user's inital and score into local storage. 
+    THEN system provide an alert that save was successful and update screen with option to start a new game or view score.
+    WHEN i click on view score button
+    THEN it show all user inital and scores saved locally.
+    WHEN i click on the Start a New Game button on the view score page
+    THEN it start a new game
 
 ## Wireframe
 
@@ -64,3 +71,4 @@ The following animation demonstrates the application functionality:
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [Github-shield]:https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white
 [slack-shield]:https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white
+ 
