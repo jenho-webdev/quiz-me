@@ -21,7 +21,7 @@
 
 - [Mock-up](#mock-up)
 
-- [Wirefram](#wireframe)
+- [Wireframe](#wireframe)
 
 - [Roadmap](#roadmap)
 
@@ -71,7 +71,7 @@ In future releases of the app, we plan to add interactive coding questions and a
 
 ## Wireframe
 
-![wireframe picture.](./assets/images/WireframeP1.png)
+![wireframe picture.](./assets/images/wireframe.jpg)
 
 ## Mock-Up
 
