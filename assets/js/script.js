@@ -179,7 +179,7 @@ function countdown() {
       // Decrement `timeLeft` by 1
       timeLeft--;
     } else if (timeLeft === 1) {
-      // When `timeLeft` is equal to 1, rename to 'second' instead of 'seconds'
+      // [X]WHEN `timeLeft` is equal to 1, rename to 'second' instead of 'seconds'
       timeEl.textContent = timeLeft + " second remaining";
       timeLeft--;
     } else {
