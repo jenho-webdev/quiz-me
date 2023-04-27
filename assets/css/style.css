@@ -35,17 +35,11 @@ label{
     transition: color .1s ease;
 }
 
-R.btn:hover {
+.btn:hover {
     background: #357ebd;
 }
 
-/* .btn.btn-big {
-    font-size: 18px;
-    padding: 15px 20px;
-    min-width: 100px;
-} */
-
-.btn-close {
+/* .btn-close {
     color: #aaaaaa;
     font-size: 1em;
     text-decoration: none;
@@ -56,7 +50,7 @@ R.btn:hover {
 
 .btn-close:hover {
     color: #919191;
-}
+} */
 
 .quiz-container {
     display: flex;
@@ -182,7 +176,7 @@ R.btn:hover {
 
 }
 .options-list button{
-    background-color: #ffffff;
+    background-color: #51504f;
     border: 1px solid #eceff1;
     border-radius: 5px;
     font-size: 18px;
@@ -190,6 +184,11 @@ R.btn:hover {
     padding: 10px;
     align-items: center;
 }
+.options-list button:hover {
+    background-color: #073dba52;
+    color: #ffffff;
+}
+
 .endGameForm {
     display: flex;
     flex-direction: column;
