@@ -13,11 +13,11 @@ header {
 
 h1
 {
-    font-size: 100%;
+    font-size: 2em;
 }
 
 label{
-    font-size: 80%;
+    font-size: 1.5em;
 }
 
 .btn {
@@ -26,7 +26,7 @@ label{
     border-radius: 3px;
     color: #fff;
     display: inline-block;
-    font-size: 14px;
+    font-size: 1em;
     padding: 8px 15px;
     text-decoration: none;
     text-align: center;
@@ -39,15 +39,15 @@ R.btn:hover {
     background: #357ebd;
 }
 
-.btn.btn-big {
+/* .btn.btn-big {
     font-size: 18px;
     padding: 15px 20px;
     min-width: 100px;
-}
+} */
 
 .btn-close {
     color: #aaaaaa;
-    font-size: 30px;
+    font-size: 1em;
     text-decoration: none;
     position: absolute;
     right: 5px;
@@ -133,7 +133,7 @@ R.btn:hover {
 }
 
 .modalHeader .h2 {
-    font-size: 20px;
+    font-size: 2em;
 }
 
 .modalFooter {
@@ -202,6 +202,13 @@ R.btn:hover {
     color: red;
 }
 
-/* @media screen and (max-width: 1183px) {
-
-} */
+@media screen and (max-width: 768px) {
+    header 
+    {
+        padding: 20px;
+        font-size: 3em;
+    }
+    .quiz-container {
+        width: 100%;
+}
+}
