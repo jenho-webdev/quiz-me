@@ -89,11 +89,11 @@ var qPool = [
 ];
 
 //main page elements
-var startButton2 = document.querySelector("#startGamebtn2");
-var questionElement = document.querySelector(".display-question");
+var startBtn2 = document.querySelector("#startGamebtn2");
+var questionEl = document.querySelector(".display-question");
 var optionsList = document.querySelector(".options-list");
 var timeEl = document.querySelector(".timer");
-var showTime = document.querySelector("#time-label");
+var timeLb = document.querySelector("#time-label");
 
 //button in modal
 var startButton = document.querySelector("#start-button");
@@ -111,33 +111,31 @@ var finalScoreMsg = document.querySelector("#finalScoreMsg");
 var modalAlertMsg = document.querySelector(".modalAlertMsg");
 var saveBtn = document.querySelector("#saveScore");
 var initialInput = document.querySelector("#initials");
-//Game var 
+//Game var
 var gameQuestions = []; //empty array to hold 10 shuffled selected questions
 var timeLeft;
 var timer;
 var currentQuestionIndex = 0;
 var scores = [];
 
-
 window.addEventListener("click", function (event) {
   var element = event.target;
   //event listener for the start button in view page
-  if(element.matches("#startGamebtn2")) {
+  if (element.matches("#startGamebtn2")) {
     startGame();
-  }//modal's Start Button
-  else if(element.matches("#start-button")) {
+  } //modal's Start Button
+  else if (element.matches("#start-button")) {
     modalStart.style.display = "none";
-    showTime.style.display = "block";
+    timeLb.style.display = "block";
     startGame();
-  }//event listener for the view score button
-  else if(element.matches("#viewScore")) {
+  } //event listener for the view score button
+  else if (element.matches("#viewScore")) {
     modalStart.style.display = "none";
     modalEnd.style.display = "none";
-    showTime.style.display = "none";
-    startButton2.style.display = "block";
+    timeLb.style.display = "none";
+    startBtn2.style.display = "block";
     renderScores();
   }
-  
 });
 
 function startGame() {
@@ -147,10 +145,10 @@ function startGame() {
   }
   //show timer on screen
   timeEl.style.display = "flex";
-  showTime.style.display = "flex";
+  timeLb.style.display = "flex";
 
   //hide the start button on screen
-  startButton2.style.display = "none";
+  startBtn2.style.display = "none";
 
   //create an array of 10 questions randomly from the pool of questions
   shuffleQuestions();
@@ -201,8 +199,8 @@ function renderQuestion() {
   var p = document.createElement("p");
   p.textContent = currentQuestion.question;
   //clear the question from the previous
-  questionElement.innerHTML = "";
-  questionElement.appendChild(p);
+  questionEl.innerHTML = "";
+  questionEl.appendChild(p);
 
   //clear the options list from the previous question
   optionsList.innerHTML = "";
@@ -275,7 +273,7 @@ function endGame() {
   var initials = "";
   var finalScore = timeLeft;
   optionsList.innerHTML = "";
-  questionElement.innerHTML = "";
+  questionEl.innerHTML = "";
 
   //set the score to 0 if it is negative
   if (finalScore < 0) {
@@ -320,21 +318,19 @@ function saveHighScore(score, initials) {
 
 function renderScores() {
   //Get scores saved in local storage SavedScores
-
   scores = JSON.parse(localStorage.getItem("scores"));
-
-  //for each saved score, create a list item and append it to the question element
-
+  //sort the object array based on the object's score attr.
+  scores.sort((a, b) => b.score - a.score);
+  //check if the 
   if (scores === null) {
     scores = [];
   }
-
+  //for each saved score, create a list item and append it to the question element
   for (var i = 0; i < scores.length; i++) {
     var save = scores[i];
     var p = document.createElement("p");
-    p.textContent = "Initial: " + save.initials + "  | " + " Score: " + save.score;
-    questionElement.appendChild(p);
+    p.textContent =
+      "Initial: " + save.initials + "  | " + " Score: " + save.score;
+    questionEl.appendChild(p);
   }
-  
-  
 }
