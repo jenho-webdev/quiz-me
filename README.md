@@ -13,13 +13,15 @@
 
 ## Table of Contents
 
-- [About The Project](#about-the-project)
+- [About The Project](#about-the-app)
 
 - [User Story](#user-story)
 
 - [Acceptance Criteria](#acceptance-criteria)
 
 - [Mock-up](#mock-up)
+
+- [Wirefram](#wireframe)
 
 - [Roadmap](#roadmap)
 
