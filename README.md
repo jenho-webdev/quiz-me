@@ -37,13 +37,13 @@ To help familiarize you with these tests and questions, the app allows you to ta
 
 ## Wireframe
 
-![wireframe picture.](./Assets/images/Wireframe%20P1.png)
+![wireframe picture.](./assets/images/WireframeP1.png)
 
 ## Mock-Up
 
 The following animation demonstrates the application functionality:
 
-![A user clicks through an interactive coding quiz, then enters initials to save the high score before resetting and starting over.](./Assets/images/demo.gif)
+![A user clicks through an interactive coding quiz, then enters initials to save the high score before resetting and starting over.](./assets/images/demo.gif)
 
 ## Roadmap
 
