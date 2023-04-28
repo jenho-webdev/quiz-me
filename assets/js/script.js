@@ -94,7 +94,7 @@ var questionEl = document.querySelector(".display-question");
 var optionsList = document.querySelector(".options-list");
 var timeEl = document.querySelector(".timer");
 var timeLb = document.querySelector("#time-label");
-
+var feedbackEl = document.querySelector("#feedback");
 //button in modal
 var startButton = document.querySelector("#start-button");
 var viewBtn = document.querySelector("#viewScore");
@@ -241,9 +241,9 @@ function checkAnswer(selectedAnswer) {
   //if the user selected the correct answer
   if (selectedAnswer == currentQuestion.correctAnswer) {
     sfxC.play();
+    feedbackEl.textContent = "Correct!!";
     //then it is at the last question
     if (currentQuestionIndex == 9) {
-      
       //end the game
       endGame();
     }
@@ -256,6 +256,7 @@ function checkAnswer(selectedAnswer) {
   //if the user selected the wrong answer
   else if (selectedAnswer != currentQuestion.correctAnswer) {
     sfxW.play();
+    feedbackEl.textContent = "Wrong!!";
     //timer take 5 sec off and game over
     timeLeft = timeLeft - 5;
     //if it is at the last question
@@ -271,6 +272,13 @@ function checkAnswer(selectedAnswer) {
   else {
     endGame();
   }
+
+  // flash right/wrong feedback on page for half a second
+  feedbackEl.setAttribute("class", "feedback");
+  setTimeout(function () {
+    feedbackEl.setAttribute("class", "feedback hide");
+  }, 1000);
+
 }
 
 // GAME OVER
@@ -309,6 +317,8 @@ function endGame() {
     window.location.reload();
   });
 }
+
+// save score to local storage
 function saveHighScore(score, initials) {
   var lastSave = {
     initials: initials,
@@ -321,6 +331,7 @@ function saveHighScore(score, initials) {
   localStorage.setItem("scores", JSON.stringify(scores));
 }
 
+//to render a list of sorted scores to the screen.
 function renderScores() {
   //Get scores saved in local storage SavedScores
   scores = JSON.parse(localStorage.getItem("scores"));
@@ -339,3 +350,6 @@ function renderScores() {
     questionEl.appendChild(p);
   }
 }
+
+
+
