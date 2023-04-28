@@ -321,7 +321,7 @@ function renderScores() {
   scores = JSON.parse(localStorage.getItem("scores"));
   //sort the object array based on the object's score attr.
   scores.sort((a, b) => b.score - a.score);
-  //check if the 
+  //check if the
   if (scores === null) {
     scores = [];
   }
