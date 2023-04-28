@@ -1,7 +1,7 @@
+
 * {
     box-sizing: border-box;
 }
-
 header {
     padding: 40px;
     text-align: center;
@@ -11,11 +11,12 @@ header {
     border-bottom: 30px #879274;
 }
 
-h1 {
+h1
+{
     font-size: 2em;
 }
 
-label {
+label{
     font-size: 1em;
 }
 
@@ -45,14 +46,14 @@ label {
 .quiz-container {
     display: flex;
     width: 70%;
-
+    
     flex-direction: column;
     margin: auto;
     background: radial-gradient(circle, rgba(240, 230, 140, 1) 0%, rgba(187, 124, 33, 0.604079131652661) 100%);
     border: 1px solid #eceff1;
     border-radius: 8px;
     box-shadow: rgba(60, 64, 67, 2) 0 1px 2px 0,
-        rgba(60, 64, 67, 0.15) 0 2px 4px 3px;
+    rgba(60, 64, 67, 0.15) 0 2px 4px 3px;
     margin-block: 20px;
     padding: 20px;
 }
@@ -73,7 +74,6 @@ label {
     bottom: 0;
     z-index: 10;
 }
-
 .modal .modalDialog {
     background: #ffffff;
     border: #333333 solid 1px;
@@ -123,9 +123,9 @@ label {
     text-align: right;
 }
 
-.quiz-header-container {
-    display: flex;
-    flex-direction: row;
+.quiz-header-container
+{   display: flex;
+    flex-direction:row;
     justify-content: space-between;
     font-size: 1em;
     font-weight: bold;
@@ -139,27 +139,28 @@ label {
 }
 
 .main-container {
-    feature/front-end-dev
-    background-color:rgba(60, 64, 67, 0.15);  
+    background-color:rgba(60, 64, 67, 0.15);
+    padding: 10px;
+     
 }
 
-.main-container p {
+.main-container p{
     padding: 0.5em;
     border: 1px solid #000000;
-    background-color: rgba(187, 124, 33, 0.5);
+    background-color: rgba(187, 124, 33,0.5);
     font-size: 1.5em;
     color: black;
     text-align: left;
-}
+} 
 
-.options-list li {
-    list-style-type: upper-roman;
+.options-list li
+{
+    list-style-type:upper-roman;
     align-items: left;
     padding: 5px;
 
 }
-
-.options-list button {
+.options-list button{
     background-color: #51504f;
     border: 1px solid #eceff1;
     border-radius: 5px;
@@ -168,7 +169,6 @@ label {
     padding: 10px;
     align-items: center;
 }
-
 .options-list button:hover {
     background-color: #073dba52;
     color: #ffffff;
@@ -185,12 +185,12 @@ label {
 }
 
 @media screen and (max-width: 768px) {
-    header {
+    header 
+    {
         padding: 20px;
         font-size: 3em;
     }
-
     .quiz-container {
         width: 100%;
-    }
+}
 }
