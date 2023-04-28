@@ -154,16 +154,14 @@ label{
 }
 
 .main-container {
-    background-color:rgba(60, 64, 67, 0.15);
-    padding: 20px;
-     
+    background-color:rgba(60, 64, 67, 0.15);  
 }
 
 .main-container p{
-    padding:20px;
+    padding: 0.5em;
     border: 1px solid #000000;
     background-color: rgba(187, 124, 33,0.5);
-    font-size: 30px;
+    font-size: 1.5em;
     color: black;
     text-align: left;
 } 
@@ -207,6 +205,7 @@ label{
         padding: 20px;
         font-size: 3em;
     }
+
     .quiz-container {
         width: 100%;
 }
