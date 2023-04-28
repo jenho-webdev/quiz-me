@@ -118,6 +118,10 @@ var timer;
 var currentQuestionIndex = 0;
 var scores = [];
 
+// sound effects
+var sfxC = new Audio('assets/sfx/correct.wav');
+var sfxW = new Audio('assets/sfx/incorrect.wav');
+
 window.addEventListener("click", function (event) {
   var element = event.target;
   //event listener for the start button in view page
@@ -235,11 +239,12 @@ function checkAnswer(selectedAnswer) {
   var currentQuestion = gameQuestions[currentQuestionIndex];
 
   //if the user selected the correct answer
-  if (selectedAnswer === currentQuestion.correctAnswer) {
+  if (selectedAnswer == currentQuestion.correctAnswer) {
+    sfxC.play();
     //then it is at the last question
     if (currentQuestionIndex == 9) {
+      
       //end the game
-
       endGame();
     }
     //else if it is not last question, edvance to next question
@@ -249,16 +254,16 @@ function checkAnswer(selectedAnswer) {
     }
   }
   //if the user selected the wrong answer
-  else if (selectedAnswer !== currentQuestion.correctAnswer) {
+  else if (selectedAnswer != currentQuestion.correctAnswer) {
+    sfxW.play();
+    //timer take 5 sec off and game over
+    timeLeft = timeLeft - 5;
     //if it is at the last question
     if (currentQuestionIndex == 9) {
-      //timer take 5 sec off and game over
       //endGame will zero out all negative timeLeft amount as the final result
-      timeLeft = timeLeft - 5;
       endGame();
     } else {
       //else if it is not last question, timer - 5 and advance to next question
-      timeLeft = timeLeft - 5;
       currentQuestionIndex++;
       renderQuestion();
     }
